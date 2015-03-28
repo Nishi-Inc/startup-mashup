@@ -1,0 +1,139 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+    <meta name="viewport" content="width=default-width,initial-scale=1,user-scalable=no" />
+    <meta http-equiv="Content-type" content="text/html,charset=utf-8">
+
+    <title>Admin Panel</title>
+    <link rel="shortcut icon" href="img/favicon.ico">
+
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="libs/bootstrap-3.3.2-dist/css/bootstrap.css">
+
+</head>
+<body ng-app="mainApp" ng-controller="homeController">
+
+<div class="nav-outer">
+    <div class="container" style="height: 150px; max-width: 100%; padding: 0 !important;">
+        <nav class="navbar navbar-default" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <!--<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-ex1-collapse">-->
+                <!--<span class="icon icon-bar"></span>-->
+                <!--<span class="icon icon-bar"></span>-->
+                <!--<span class="icon icon-bar"></span>-->
+                <!--</button>-->
+                <a class="" href="#homePageCarousel">
+                    <img class="" src="img/logo.png" alt="Admin Panel" width="50px">
+                </a>
+
+                <ul class="nav navbar-nav pull-right">
+                    <li class="active">
+                        <a class="" data-toggle="dropdown" href="#homePageCarousel">HOME</a>
+                    </li>
+                    <!--<li class="">-->
+                    <!--<a target="_blank" href="http://nowfloats.com/boost/applinks?id=home">SERVICES</a>-->
+                    <!--</li>-->
+                    <li class="dropdown">
+                        <a class="scroll" href="#product">PRODUCT</a>
+                        <!--<ul class="dropdown-menu">-->
+                        <!--<li class=""><a href="#product">PRODUCT</a></li>-->
+                        <!--<li class=""><a href="#features">FEATURES</a></li>-->
+                        <!--<li><a href="#plans">PLANS</a></li>-->
+                        <!--</ul>-->
+                    </li>
+                    <li class="dropdown">
+                        <a class="scroll" href="#industries">CLIENTS</a>
+                        <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#testimonials">TESTIMONIAL</a></li>-->
+                        <!--<li><a href="#homePageCarousel">ALL CUSTOMERS</a></li>-->
+                        <!--</ul>-->
+                    </li>
+                    <li class="dropdown">
+                        <a class="scroll" href="#about-us">ABOUT US</a>
+                        <!--<a class="dropdown-toggle" data-toggle="dropdown" href="javascript:void(0)">ABOUT US</a>-->
+                        <!--<ul class="dropdown-menu">-->
+                        <!--<li><a href="#about-us">MISSION</a></li>-->
+                        <!--<li><a href="#team">TEAM</a></li>-->
+                        <!--<li><a href="#faq">FAQ</a></li>-->
+                        <!--</ul>-->
+                    </li>
+                    <!--<li class="">-->
+                    <!--<a class="dropdown-toggle" data-toggle="dropdown" href="#accolades">JOURNAL</a>-->
+                    <!--</li>-->
+
+                    <li class=""><a class="dropdown-toggle" href="#contact-us">CONTACT</a></li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </nav>
+    </div>
+</div>
+
+<div class="container">
+    <div class="">
+        <legend>Users</legend>
+        <div ng-if="!records.length">No users found.</div>
+        <table ng-if="records.length" class="table table-responsive">
+            <thead>
+            <tr>
+                <td class="col-lg-1 hidden-xs">Sr No</td>
+                <td class="col-lg-4 col-md-4">Name</td>
+                <td class="col-lg-4 col-md-3">Latitude</td>
+                <td class="col-lg-1 col-sm-3">Longitude</td>
+            </tr>
+            </thead>
+            <tbody class="table-striped">
+            <tr ng-repeat="record in records">
+                <td>{{$index+1}}</td>
+                <td>{{record.data.name}}</td>
+                <td>{{record.data.latitude}}</td>
+                <td>{{record.data.longitude}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="btn-group btn-group-lg">
+        <button class="btn btn-primary" ng-click="loadRecords()">Load Records</button>
+    </div>
+
+    <footer>
+        <hr/>
+        &#169; <span class="current-year">2015</span> All rights reserved.
+    </footer>
+</div>
+
+
+
+<script type="application/javascript" charset="utf-8" src="libs/angular/angular.js"></script>
+<script type="application/javascript" charset="utf-8" src="libs/angular/angular-route.js"></script>
+<!--<script type="application/javascript" charset="utf-8" src="libs/angular/angular-ui-router.min.js"></script>-->
+<!--<script type="application/javascript" charset="utf-8" src="libs/angular/angular-animate.min.js"></script>-->
+<!--<script type="application/javascript" charset="utf-8" src="libs/angular/angular-resource.min.js"></script>-->
+<!--<script type="application/javascript" charset="utf-8" src="libs/angular/angular-sanitize.min.js"></script>-->
+<script type="application/javascript" charset="utf-8" src="libs/angular/angular-touch.js"></script>
+<script type="application/javascript" charset="utf-8" src="libs/jquery-1.11.1.min.js"></script>
+<script type="application/javascript" charset="utf-8" src="libs/bootstrap-3.3.2-dist/js/bootstrap.js"></script>
+
+<!--src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDY0kkJiTPVd2U7aTOAwhc9ySH6oHxOIYM&sensor=false-->
+<!--<script type="application/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>-->
+<!--<script type="application/javascript" src="js/utils/map_util.js"></script>-->
+
+<script type="application/javascript" src="js/enums.js"></script>
+<script type="application/javascript" src="js/app.js"></script>
+<script type="application/javascript" src="js/models.js"></script>
+
+<!-- ADAPTORS -->
+<script type="application/javascript" src="js/adaptors/api_adaptor.js"></script>
+
+<!-- SERVICES -->
+<script type="application/javascript" src="js/services/config_service.js"></script>
+
+<!-- CONTROLLERS -->
+<script type="application/javascript" src="js/controllers/home_controller.js"></script>
+
+</body>
+</html>
