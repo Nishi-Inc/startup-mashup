@@ -12,5 +12,8 @@ mainApp.factory('configService', [function() {
     self.versionName = '0.1.0';
     self.devMode = true;
 
+    self.apiDomain = "http://localhost:8080";
+    self.recordsUri = "/records";
+
     return self;
 }]);
