@@ -11,3 +11,5 @@ This repo contains solutions to the problems of Hackathon Web held in Startup Ma
 8. The configuration is in ApplicationConfig.java file, please configure the MongoDB installation and/or set
 variables as per your Mongo installation.
 9. There must be a collection named `User` in the db.
+10. It is a REST API.`api` module is deployable on Tomcat 7. The uri would be at `/v1`.
+
