@@ -2,8 +2,9 @@ package com.nishionline.api.dao;
 
 import com.mongodb.*;
 import com.nishionline.api.model.PersistentObject;
+import com.nishionline.api.utils.ApplicationConfig;
 import com.nishionline.api.utils.GsonUtils;
-import com.nishionline.core.utils.ApplicationConfig;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import java.net.UnknownHostException;
 import java.util.ArrayList;
@@ -19,6 +20,7 @@ public abstract class DAOSupport {
     private static final String TAG = DAOSupport.class.getSimpleName();
     private MongoClient mongoClient;
 
+    @Autowired
     private ApplicationConfig applicationConfig;
     private DB db;
 

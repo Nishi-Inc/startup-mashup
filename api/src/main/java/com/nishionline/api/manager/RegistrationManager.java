@@ -2,6 +2,7 @@ package com.nishionline.api.manager;
 
 import com.nishionline.api.dao.UserDAO;
 import com.nishionline.api.dto.RegistrationDTO;
+import com.nishionline.api.dto.UserResponseDTO;
 import com.nishionline.api.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,4 +22,7 @@ public class RegistrationManager {
         this.userDAO.save(user);
     }
 
+    public UserResponseDTO search() {
+        return this.userDAO.getAll();
+    }
 }

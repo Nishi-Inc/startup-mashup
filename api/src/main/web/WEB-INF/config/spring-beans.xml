@@ -16,62 +16,13 @@
     <!--<bean id="accessTokenValidator" class="org.apache.cxf.rs.security.oauth2.filters.AccessTokenValidatorClient" >-->
     <!--<property name="tokenValidatorClient" ref="webClient" />-->
     <!--</bean>-->
-    <bean id="webClient" class="org.apache.cxf.jaxrs.client.WebClient" >
-        <constructor-arg ref="realm" type="java.lang.String" />
-    </bean>
 
     <!-- FILTERS -->
     <bean id="corsFilter" class="org.apache.cxf.rs.security.cors.CrossOriginResourceSharingFilter"/>
-    <bean id="customRequestHandler" class="com.nishionline.api.security.providers.CustomRequestHandler">
-        <property name="dataProvider" ref="dataProvider" />
-    </bean>
-    <bean id="oauthRequestFilter" class="org.apache.cxf.rs.security.oauth2.filters.OAuthRequestFilter">
-        <property name="dataProvider" ref="dataProvider" />
-        <!--<property name="tokenValidator" ref="accessTokenValidator" />-->
-        <!--<property name="" ref="realm" />-->
-    </bean>
-
-    <bean id="authenticationFilter" class="org.apache.cxf.jaxrs.security.JAASAuthenticationFilter">
-        <property name="contextName" value="BookLogin"/>
-        <property name="realmName" value="realm" />
-    </bean>
-
-    <jaxrs:server id="oauthServer" address="/oauth">
-        <jaxrs:serviceBeans>
-            <ref bean="authorizationService" />
-            <ref bean="accessTokenService" />
-            <!--<ref bean="tokenRevocationService" />-->
-        </jaxrs:serviceBeans>
-        <jaxrs:providers>
-            <ref bean="jsonProvider" />
-            <ref bean="customRequestHandler" />
-        </jaxrs:providers>
-    </jaxrs:server>
-
-    <jaxrs:server id="clientRegistrationServer" address="/oauth">
-        <jaxrs:serviceBeans>
-            <ref bean="clientRegistrationService" />
-        </jaxrs:serviceBeans>
-        <jaxrs:providers>
-            <ref bean="jsonProvider" />
-        </jaxrs:providers>
-    </jaxrs:server>
-
-    <jaxrs:server id="userRegistrationServer" address="/admin">
-        <jaxrs:serviceBeans>
-            <ref bean="userService" />
-        </jaxrs:serviceBeans>
-        <jaxrs:providers>
-            <ref bean="jsonProvider" />
-            <!--<ref bean="customRequestHandler" />-->
-        </jaxrs:providers>
-    </jaxrs:server>
 
     <jaxrs:server id="apiServer" address="/v1">
         <jaxrs:serviceBeans>
-            <ref bean="requestQuotationService"/>
-            <ref bean="quotationService"/>
-            <ref bean="rfqService"/>
+            <ref bean="userService"/>
         </jaxrs:serviceBeans>
         <jaxrs:providers>
             <ref bean="jsonProvider" />
@@ -80,23 +31,5 @@
         </jaxrs:providers>
     </jaxrs:server>
 
-    <bean class="org.apache.cxf.rs.security.oauth2.services.AuthorizationCodeGrantService" id="authorizationService" >
-        <property name="dataProvider" ref="dataProvider" />
-        <property name="subjectCreator" ref="customSubjectCreator" />
-    </bean>
-    <bean class="org.apache.cxf.rs.security.oauth2.services.AccessTokenService" id="accessTokenService" >
-        <property name="dataProvider" ref="dataProvider" />
-        <property name="grantHandlers" ref="grantHandlers" />
-    </bean>
-    <!-- An item from v3.0.1 -->
-    <!--<bean class="org.apache.cxf.rs.security.oauth2.services.TokenRevocationService" id="tokenRevocationService" >-->
-    <!--<property name="dataProvider" ref="dataProvider" />-->
-    <!--</bean>-->
-
-    <bean class="com.nishionline.api.service.impl.ClientRegistrationServiceImpl" id="clientRegistrationService" />
-
-    <bean class="com.nishionline.api.service.impl.RequestQuotationServiceImpl" id="requestQuotationService" />
-    <bean class="com.nishionline.api.service.impl.QuotationServiceImpl" id="quotationService" />
     <bean class="com.nishionline.api.service.impl.UserServiceImpl" id="userService" />
-    <bean class="com.nishionline.api.service.impl.RFQServiceImpl" id="rfqService"/>
 </beans>
